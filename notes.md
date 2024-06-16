@@ -747,4 +747,9 @@ public class App {
 #### Inheritance Strategies II - Joined Table
 
 - jpa will create a distinct db table for every single entity
+- bit more cimplicated as seprate tables for eahc entity, joined by primary key, but benefit is more memory efficient as no null values which occurs in single table database wwith entities which have different properties
+
+---
+
+#### Inheritance Strategies II - Table per Class
 

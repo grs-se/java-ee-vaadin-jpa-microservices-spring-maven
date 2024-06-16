@@ -2,9 +2,10 @@ package com.udemy.inheritance;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue(value = "C")
+@PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class Car extends Vehicle {
 
 	private int speed;
