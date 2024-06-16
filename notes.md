@@ -753,3 +753,7 @@ public class App {
 
 #### Inheritance Strategies II - Table per Class
 
+- jpa creates a database table associated with every single entity we have defined in Java but in this case these tabes are not going to be connected based on the primary key
+
+-
+
