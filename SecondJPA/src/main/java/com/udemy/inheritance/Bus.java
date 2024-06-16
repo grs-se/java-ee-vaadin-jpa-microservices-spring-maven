@@ -2,9 +2,10 @@ package com.udemy.inheritance;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue(value = "B")
+@PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class Bus extends Vehicle {
 	
 	private int numOfPassengers;

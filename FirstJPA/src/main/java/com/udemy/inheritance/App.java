@@ -26,5 +26,3 @@ public class App {
 		factory.close();
 	}
 }
-
-
