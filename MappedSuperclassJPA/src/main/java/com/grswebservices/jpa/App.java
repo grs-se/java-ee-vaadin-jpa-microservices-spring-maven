@@ -1,32 +1,33 @@
-package com.udemy.inheritance;
+package com.grswebservices.jpa;
+
+import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class App {
 
 	public static void main(String[] args) {
+		
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("com.grswebservices.jpa");
 		EntityManager entityManager = factory.createEntityManager();
-		
 		entityManager.getTransaction().begin();
 		
-		// make changes to the DB
-
-		// doesn't matter if using the Vehicle super class or if we are using the bus as the concrete implementation
-		// JPA will insert the values into the car and into the bus db tables.
-		Vehicle bus = new Bus("Name of Bus", 100);
-//		Bus bus = new Bus("Name of Bus", 100);
-		Vehicle car = new Car("Name of Car", 150);
+		Person person = new Person();
+		person.setName("Kevin");
+		person.setAge(23);
+		person.setDrivingLicense("XHB175");
 		
-		entityManager.persist(bus);
-		entityManager.persist(car);
+		entityManager.persist(person);
 		
 		entityManager.getTransaction().commit();
 		
 		entityManager.close();
 		factory.close();
 	}
+
 }
