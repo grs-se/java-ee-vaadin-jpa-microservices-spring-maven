@@ -850,3 +850,25 @@ mysql> select * from prof_projects;
 
 ```
 
+---
+
+## Eager vs Lazy Fetch
+
+- The basic concept of JPA is to make a duplicate copy of the database in the cache memory
+- we manipulate the duplicate data
+- only when it is committed using entity manager are the changes effected into the database.
+
+---
+
+- Eager fetch: when we search for a record and find it, we return the whole record.
+- Lazy fetch: when we search for a record and if we find it we store the information that is available but do not return data.
+- data will be returned only when the setter method is called.
+- for example: getStudents()
+- not adviseable to get huge list of students. 
+- instead use lazy fetch - jpa will know the students are present but will not load the students automatically. 
+- data will be loaded only when the setter method is called such as getStudents()
+- lazy fetch is preferably because it is memory friendly.
+- so when we instantiate a new Professor and whenever we are handling the object JPA will not load all the resarch projects. 
+- default type is default FetchType.Lazy
+
+
