@@ -789,8 +789,64 @@ public class Employee {
 - store a reference to a column in the other table
 - foreign key allows us to connect to indepedent database tables
 
+---
+
+## ManyToMany
+- ManyToMany mapping represents a collection of data value associations where any number of entites can be associated with a collection of other entities.
+- In a relational database, any number of rows of one entity can be referred to in a number of rows of another entity.
 
 
+```sql
+mysql> show tables;
++---------------------+
+| Tables_in_udemy     |
++---------------------+
+| address             |
+| bus                 |
+| car                 |
+| employee            |
+| hibernate_sequences |
+| person              |
+| person_table        |
+| prof_projects       |
+| professor           |
+| projects            |
+| student             |
+| university          |
+| vehicle             |
++---------------------+
+13 rows in set (0.01 sec)
+
+mysql> select * from professor;
++----+-----------------+
+| id | name            |
++----+-----------------+
+|  1 | Stephen Hawking |
+|  2 | Albert Einstein |
++----+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from projects;
++----+------------------------------------+
+| id | project_name                       |
++----+------------------------------------+
+|  1 | Black Hole Project                 |
+|  2 | Quantum Field Theory Project       |
+|  3 | Thermodynamic Fluctuations Project |
++----+------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from prof_projects;
++-----------+-------------+
+| projectId | professorId |
++-----------+-------------+
+|         1 |           1 |
+|         1 |           2 |
+|         2 |           1 |
+|         3 |           2 |
++-----------+-------------+
+4 rows in set (0.15 sec)
 
 
+```
 
