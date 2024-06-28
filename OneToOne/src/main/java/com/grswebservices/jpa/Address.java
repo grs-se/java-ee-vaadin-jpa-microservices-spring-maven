@@ -24,7 +24,7 @@ public class Address {
 	private int zipCode;
 	
 	@OneToOne
-	@JoinColumn()
+	@JoinColumn(name = "employeeId")
 	private Employee employee;
 	
 	public Address() {

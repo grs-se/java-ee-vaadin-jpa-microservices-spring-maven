@@ -8,12 +8,14 @@
   >
    
     <persistence-unit name="com.grswebservices.jpa" transaction-type="RESOURCE_LOCAL">  
-    	    	        
+    	
+    	<!--   <provider>org.hibernate.ejb.HibernatePersistence</provider>   -->
+        
         <properties>
        		<property name="hibernate.archive.autodetection" value="class" />
        
-			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>		 
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost/udemy?serverTimezone=UTC"/> 
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>		 
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/udemy?serverTimezone=UTC"/> 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" /> 
 			<property name="hibernate.connection.user" value="bob" />
 			<property name="hibernate.connection.password" value="Pa$$w0rd" />
