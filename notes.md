@@ -755,5 +755,42 @@ public class App {
 
 - jpa creates a database table associated with every single entity we have defined in Java but in this case these tabes are not going to be connected based on the primary key
 
--
+---
+
+### Entity Relationships - @OneToOne
+
+#### Composition vs Inheritance
+
+**INHERITANCE** "IS A relationship"  
+
+```java
+public Car extends Vehicle {
+...
+}
+```
+
+- Car "IS A" Vehicle
+
+**COMPOSITION** "HAS A relationship"
+
+```java
+public class Employee {
+	private Address address;
+	...
+}
+```
+
+- Employee "HAS A" Address
+- a given class or object includes another object as a field variable
+- this is called Composition
+- "Favour Composition over Inheritance is a principle of object-oriented programming"
+- One to one relation between the two entities
+- every e,ploee has a single address and every address has a single employee
+- store a reference to a column in the other table
+- foreign key allows us to connect to indepedent database tables
+
+
+
+
+
 
