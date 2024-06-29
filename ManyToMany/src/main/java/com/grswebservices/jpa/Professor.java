@@ -3,6 +3,7 @@ package com.grswebservices.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,7 +25,11 @@ public class Professor {
 	@Column(name="name")
 	private String professorName;
 	
-	@ManyToMany(mappedBy = "professors", fetch = FetchType.LAZY)
+	@ManyToMany(
+			mappedBy = "professors", 
+			fetch = FetchType.LAZY,
+			// CascadeType.ALL: if we apply remove() on professor object, entityManager will also remove all projects associated with given professor
+			cascade = CascadeType.ALL)
 	private List<ResearchProject> projects;
 	
 	public Professor() {

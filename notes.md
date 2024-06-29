@@ -871,4 +871,12 @@ mysql> select * from prof_projects;
 - so when we instantiate a new Professor and whenever we are handling the object JPA will not load all the resarch projects. 
 - default type is default FetchType.Lazy
 
+---
+
+## Cascading
+
+- Use of the cascade annotation element can be used to propagate the effect of an operation to associated entities.
+- cascade functonality is most tpyically used in parent-child relationships or in cases of composition.
+
+
 

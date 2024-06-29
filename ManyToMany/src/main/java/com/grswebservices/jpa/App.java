@@ -35,6 +35,8 @@ public class App {
 		entityManager.persist(project1);
 		entityManager.persist(project2);
 		entityManager.persist(project3);
+		
+		entityManager.remove(professor1);
 
 		entityManager.getTransaction().commit();
 		
