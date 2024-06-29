@@ -903,6 +903,68 @@ mysql> select * from prof_projects;
 
 - when working with JPA there are several events during an entities lifecycle.
 - JPA Entity Lifecycle events and how we can use annotations to hanlde callbacks and execute code when the events occur.
-- 
+
+```java
+package com.grswebservices.jpa;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PostPersist;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+
+@Entity
+@Table
+public class Article {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name = "article_name")
+	private String article;
+	
+	public Article() {
+		
+	}
+	
+	public Article(String article) {
+		this.article = article;
+	}
+	
+	@PrePersist
+	public void beforePersist() {
+		System.out.println("Before persisting the object...");
+	}
+	
+	@PostPersist
+	public void postPersist() {
+		System.out.println("After persisting the object...");
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getArticle() {
+		return article;
+	}
+
+	public void setArticle(String article) {
+		this.article = article;
+	}
+}
+
+````
+
+- What is so useful about this?
+- say if we wanted to assign a time to the given article 
 
 
