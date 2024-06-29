@@ -873,10 +873,36 @@ mysql> select * from prof_projects;
 
 ---
 
-## Cascading
+## Cascading fields
 
 - Use of the cascade annotation element can be used to propagate the effect of an operation to associated entities.
 - cascade functonality is most tpyically used in parent-child relationships or in cases of composition.
+- Several books may be associated with an author. What if we get rid of Author object? We should remove the book objects as well. This is why cascading came to be.
+- If something should happen to the parent then JPA will delegate this effect to the children
+- CascadeType.PERSIST - If persist is called on the parent object, the child will be persisted as well
+- CascadeType.MERGE - child will be merged as well
+- CascadeType.DETACH - child will be detahed as well
+- CascadeType.REFRESH - child will be refreshed as well
+- CascadeType.REMOVE - child will be removed as well
+- CascadeType.ALL - all of the above mentioned
+- if we call entityManager.persist() on a given object, it will be managed by EntityManager. So it will be added to the context.
+- if we call entityManager.detach() it wil be detached from the context. The EntityManager no longer manages that given object.
+- if we call entityManager.merge() on the detached object it will be added to the EntityManager context again, so that EntityManager can perform operations again such as refresh() and remove()
 
+---
+
+#### MERGE VS PERSIST
+- What is the differene between merge and persist? 
+- both of them add the given entity to the context
+- Persist: future updates will be tracked
+- Merge: a new instance is created with the copied state and this instance will be managed by EntityManager. So any changes made to the original object will not be part of the transaction.
+
+---
+
+## JPA Callbacks and Listeners
+
+- when working with JPA there are several events during an entities lifecycle.
+- JPA Entity Lifecycle events and how we can use annotations to hanlde callbacks and execute code when the events occur.
+- 
 
 
