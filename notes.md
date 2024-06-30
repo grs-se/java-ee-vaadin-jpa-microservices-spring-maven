@@ -968,3 +968,16 @@ public class Article {
 - say if we wanted to assign a time to the given article 
 
 
+---
+
+### Locks - Optimistic and Pessimistic
+
+
+**Optimistic locking**  
+- we use @Version annotation to apply optimistic locking.
+- we maintain a version number for every entity obkect. The initial version of a new entity object (when it is stored in the db for the first time) is 1.
+- in every transaction in which an entity object modified its version number is automatically increased by one.
+- version numbers are managed internally but can be expised by defining a version field. 
+- during commit JPA checks every database object that has to be updated or deleted and comapres the version number of that object in the database to the version number of the in memory object beig updated. 
+- the transaction fails and OptimisitcLockException is thrown if the version number do not match, indicating thtat ht eobject has been modfied by another user since it was trieve by the current updater. 
+  
