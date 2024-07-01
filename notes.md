@@ -980,4 +980,23 @@ public class Article {
 - version numbers are managed internally but can be expised by defining a version field. 
 - during commit JPA checks every database object that has to be updated or deleted and comapres the version number of that object in the database to the version number of the in memory object beig updated. 
 - the transaction fails and OptimisitcLockException is thrown if the version number do not match, indicating thtat ht eobject has been modfied by another user since it was trieve by the current updater. 
+- optimisitc locking is based on tdetecing changes on entites by checking their version ttribute, on the cotnrary pesisimitic locking nvolves lockign entites on the db level, 
+- can define version attribute once were sure that each entity class must have only 1 version attribute and it must be palced int he primary table for an entity map to several tables.
+- crucial not to update the version variable ourselves, 
   
+  
+---
+
+## JPA vs Hibernate
+
+- JPA = supertype / interface
+- concrete implementations / vendors such as Hibernate, EcipseLink, OpenJPA
+- JPA defines the behaviour without the implementation. 
+- typical in software engineering - interfaces define the behaviour but don't care how it is done.
+- JPA is just the specification, an interface with all the methods
+- vendors do conrete implementations
+- use jpa as a supertype: we xan change the vendors whenever we want.
+- open-closed principle - open for extension, but closed for modification - which means if we want to change the underlying implementation, the jpa vendor, it will be extremely easy, beuase we just have to change the dependenyc in the POM.xml file, we don;t have to update the classes we have already implemented. 
+
+- better to use import javax.persistence.Entity; rather than org.hiberate.annotations.Entity; as the latter ties you into the vendor, whereas if you use the JPA interface dont need to change all imports of every file, just change dependencies in POM
+
