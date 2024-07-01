@@ -5,6 +5,10 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean definitions here -->
-    <bean id="student_bean" class="com.grswebservices.Student"></bean>
+    <!-- <bean id="student_bean" class="com.grswebservices.Student" scope="singleton"> -->
+	<!-- prototype means as many instances of underlying bean as we want --> 
+    <bean id="student_bean" class="com.grswebservices.Student" scope="singleton" init-method="initStudent" destroy-method="destroyStudent">
+		<property name="studentName" value="Joe Smith" ></property>
+	</bean>
 
 </beans>

@@ -1067,3 +1067,56 @@ public class Article {
 - then we can instantiate an application context in order to get these beans whenever we want.
 - sp this is the overal strucut reo f a pring application
  
+ 
+ ---
+ 
+#### Spring Containers
+ 
+- Spring relies heavily on IoC: the spring conatiner helps to make this IoC.
+
+- Creat the objects + wire them together + manage their complete lifecycle from creation to destruction + uses dependency injection to manage compositions: these are beans
+- instructions + metadata (XML, annotations) --> container creates the full application!!
+- 
+
+----
+
+### Bean Scopes
+
+- **Singleton Scope** - Spring IoC container creates (and caches) exactly one object defined by the bean. The default scope is singleton,
+	- if we get multiple instances and change a given feature, a given variable, within a given instance, then this update will be reflected in every other instance as well because essentially there is just one object under the hood.
+- **Prototype Scope** - This is how we can force Spring IoC container to create a new bean instance every time a new one is needed.
+- **Web-Aware Scoped** - request, session and global-session scopes.
+
+
+```java
+package com.grswebservices;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		
+		// IoC container - this is where the beans are located
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		
+		// we do not get a NULL exception because the Spring container does the instantiation under the hood
+		Student s = (Student) context.getBean("student_bean");
+		s.setStudentName("Kevin");
+		System.out.println(s.getStudentName());
+		
+		Student s2 = (Student) context.getBean("student_bean");
+		System.out.println(s2.getStudentName());
+	}
+
+}
+// with singleton scope s2 will be same as s
+
+```
+
+---
+
+### Bean Lifecycle
+
+
