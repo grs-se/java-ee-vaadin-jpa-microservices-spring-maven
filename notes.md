@@ -1119,4 +1119,12 @@ public class App {
 
 ### Bean Lifecycle
 
-
+- the lifecycle of any object means how it is born and how it behaves throughout its life and how it is destroyed.
+- int he Spring framework the bean lifecycle is managed by the spring container.
+- the spring container gets started first and it creates the bean instances and the dependencies are injected.
+- then the custom init() method is executed - we can do initialization related logic here
+- then bean is ready - application is running
+- the custom destroy() method is executed - we can close streams or databases etc.
+- single instances are quite easy to handle - this is why the application context can call the init() method as well as the destroy method because there is just a single insance of the given bean
+- whereas with prototypes - our application may produce millions of students, then it is not good that the app context handles those objects because then the app cotnext has to store a reference to every single object in memory, and then the garbage collctor is not able to remove unused objects from the memory which means this is going to be a memory leak. 
+- what's crucial is that when the scope id singleton then the init mehtod will be executed as well as the destory method, but when the cope is prototype just the init method is executed, not the destory method
