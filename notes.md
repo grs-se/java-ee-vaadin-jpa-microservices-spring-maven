@@ -1000,3 +1000,70 @@ public class Article {
 
 - better to use import javax.persistence.Entity; rather than org.hiberate.annotations.Entity; as the latter ties you into the vendor, whereas if you use the JPA interface dont need to change all imports of every file, just change dependencies in POM
 
+---
+
+## Spring Framework
+
+- released in June 2003.
+- enforces programmers to use best known coding practices
+- key feature: **inversion of control** principle and dependency injection
+- the core module in the framework is the "inversion of control container"
+- we don't instantiate classes: the framework manages this problem.
+
+---
+
+### About Dependency
+- we want to have as few dependencies as possible: if classes and modules are independent, we can reuse them without any problem.
+- depdendency injection glues classes together but keeps them as independent as possible. 
+
+---
+
+### SOLID PRINCIPLES
+
+- **The Single Responsibility Principle** states that every module or class should have responsibility over a single part of the functionality provided by the software, and that responsibility should be entirely encapsulated by the class.
+- **Open/Closed Principle** - objects or entities should be open for extension but closed for modification.
+- **Liskov Substitution Principle**: Every subclass or derived class should be substitutable for their base or parent class. 
+- **Interface Segregation Principle**: This principle states that no client should be forced to depend on methods it does not use.
+- **Dependency Inversion Principle**: High-level modules should not depend of low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions. 
+
+---
+
+#### Dependency Inversion 
+- High-level modules should not depend of low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions. 
+- we can make it happen with inversion of control such as dependency injection
+- This is why Spring Framework came to be.
+- We can handle these problems with various design patterns: template pattern, service locator pattern etc. Using Spring Framework is more convenient. 
+- we can end up woth loosely coupled software architecture
+- if we need to update a given class it will be easy because high level modules do not depend on low level modules.
+
+---
+
+#### Benefits of Spring
+- We can develop enterprise applications using POJOs (instead of enterprise beans), so we do no need an EJB contains such as an application server. We can use servlet container as well. So essentially Srping framework is lightweight in comparison to Enterprise level Java Beans.
+- Spring Framework makes use of the existing tehchnologies (ORM, etc)
+- It has a lightweight IoC Container compared to EJB containers, so it can be v helpful when we want to deploy our applcation on computers with limited memory or limited CPU resource. 
+
+---
+
+#### Spring Framework Architecture
+- Spring core, spring beans, and spring context = fundamental building blocks  
+
+- Data Access/Integration
+- Web
+- Core container
+
+---
+
+- Core container - 
+- Bean factory = impleentation of a factory pattern - we dont have to instantiate classes explicitly as they are handled as Beans. 
+- we get access to these beans with help of context. Context module builds on solid base privedd by core and beans modules, and i a media to access any objects they find and configure
+-
+
+---
+
+
+- this is how we can use Maven to fetch every single dependency - spring core, spring beans, and spring context
+- then we can use an xml file to define the beans
+- then we can instantiate an application context in order to get these beans whenever we want.
+- sp this is the overal strucut reo f a pring application
+ 
