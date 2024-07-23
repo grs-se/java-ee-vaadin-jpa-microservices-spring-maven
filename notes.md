@@ -1128,3 +1128,31 @@ public class App {
 - single instances are quite easy to handle - this is why the application context can call the init() method as well as the destroy method because there is just a single insance of the given bean
 - whereas with prototypes - our application may produce millions of students, then it is not good that the app context handles those objects because then the app cotnext has to store a reference to every single object in memory, and then the garbage collctor is not able to remove unused objects from the memory which means this is going to be a memory leak. 
 - what's crucial is that when the scope id singleton then the init mehtod will be executed as well as the destory method, but when the cope is prototype just the init method is executed, not the destory method
+
+---
+#### Dependency Injection
+
+- not that convenient to use bean.xml file so use Annotations instead.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <!-- <bean id="student_bean" class="com.grswebservices.Student" scope="singleton"> -->
+	<!-- prototype means as many instances of underlying bean as we want --> 
+    <bean id="student_bean" class="com.grswebservices.Student" init-method="initStudent" destroy-method="destroyStudent">
+		<property name="studentName" value="Joe Smith" ></property>
+		<constructor-arg ref="address_bean"></constructor-arg>
+	</bean>
+	<bean id="address_bean" class="com.grswebservices.Address">
+		<property name="address" value="Wall Street 12"></property>
+	</bean>
+
+</beans>
+
+```
+

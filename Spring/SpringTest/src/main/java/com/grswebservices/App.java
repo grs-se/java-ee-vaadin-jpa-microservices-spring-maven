@@ -19,6 +19,8 @@ public class App {
 		Student s2 = (Student) context.getBean("student_bean");
 		System.out.println(s2.getStudentName());
 		
+		s.showInfo();
+		
 		// this is how to close the context
 		((ConfigurableApplicationContext) context).close();
 	}
