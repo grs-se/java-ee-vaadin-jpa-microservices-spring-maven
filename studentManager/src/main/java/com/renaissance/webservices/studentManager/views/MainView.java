@@ -23,14 +23,24 @@ public class MainView extends VerticalLayout {
 		
 		setSizeFull();
 		setAlignItems(Alignment.CENTER);
+
 		
-		List<Student> students = new ArrayList<>();
-		students.add(new Student("Adam", 24, 1675, "UK", new Status("ACTIVE")));
-		
-		logoLayout = new LogoLayout();
-		grid = new Grid<>(Student.class);
-		grid.setItems(students);
+		createFieldVariables();
+
 		
 		add(logoLayout, grid);
+		
+		loadStudents();
+	}
+
+	private void loadStudents() {
+		List<Student> students = new ArrayList<>();
+		students.add(new Student("Adam", 24, 1675, "UK", new Status("ACTIVE")));
+		grid.setItems(students);
+	}
+
+	private void createFieldVariables() {
+		logoLayout = new LogoLayout();
+		grid = new Grid<>(Student.class);
 	}
 }
