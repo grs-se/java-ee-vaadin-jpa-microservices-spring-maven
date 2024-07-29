@@ -41,6 +41,7 @@ public class MainView extends VerticalLayout {
 		grid.addColumn(s -> s.getName()).setHeader("Name");
 		grid.addColumn(s -> s.getAge()).setHeader("Age");
 		
+		/*
 		grid.addComponentColumn(s -> {
 			// different colour icons for different status values
 			Icon icon;
@@ -58,15 +59,16 @@ public class MainView extends VerticalLayout {
 			
 			return icon;
 		}).setHeader("Status");
+		*/
 		
 		grid.getColumns().forEach(col -> col.setAutoWidth(true));
 	}
 
 	private void loadStudents() {
 		List<Student> students = new ArrayList<>();
-		students.add(new Student("Adam", 24, 1675, "UK", new Status("ACTIVE")));
-		students.add(new Student("Kevin", 24, 1675, "UK", new Status("PASSIVE")));
-		students.add(new Student("Emily", 24, 1675, "UK", new Status("ABSOLVED")));
+//		students.add(new Student("Adam", 24, 1675, "UK", new Status("ACTIVE")));
+//		students.add(new Student("Kevin", 24, 1675, "UK", new Status("PASSIVE")));
+//		students.add(new Student("Emily", 24, 1675, "UK", new Status("ABSOLVED")));
 		grid.setItems(students);
 	}
 
