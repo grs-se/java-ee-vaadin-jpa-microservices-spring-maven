@@ -1,4 +1,4 @@
-package com.renaissance.webservices.studentManager.views;
+package com.grswebservices.views;
 
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;

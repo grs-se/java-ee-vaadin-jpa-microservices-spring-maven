@@ -1,4 +1,4 @@
-package com.renaissance.webservices.studentManager.model;
+package com.grswebservices.model;
 
 public class Student {
 
