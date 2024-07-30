@@ -32,8 +32,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> find(String substring) {
-		// TODO JPQL query
-		return null;
+		return studentRepository.findStudents(substring);
 	}
 
 }

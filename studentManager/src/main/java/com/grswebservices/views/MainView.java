@@ -5,10 +5,16 @@ import java.util.List;
 
 import com.grswebservices.model.Status;
 import com.grswebservices.model.Student;
+import com.grswebservices.services.StudentService;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -17,20 +23,22 @@ import com.vaadin.flow.router.Route;
 // http://localhost:8080/ui
 public class MainView extends VerticalLayout {
 	
+	// constructor injection
+	private final StudentService studentService;
 	private LogoLayout logoLayout;
 	private Grid<Student> grid;
+	private TextField filterField;
 	
-	public MainView() {
-		
+	public MainView(StudentService studentService) {
+		this.studentService = studentService;
 		setSizeFull();
 		setAlignItems(Alignment.CENTER);
-
 		
 		createFieldVariables();
 
 		configureGrid();
 		
-		add(logoLayout, grid);
+		add(logoLayout, createToolbar(), grid);
 		
 		loadStudents();
 	}
@@ -41,7 +49,6 @@ public class MainView extends VerticalLayout {
 		grid.addColumn(s -> s.getName()).setHeader("Name");
 		grid.addColumn(s -> s.getAge()).setHeader("Age");
 		
-		/*
 		grid.addComponentColumn(s -> {
 			// different colour icons for different status values
 			Icon icon;
@@ -59,21 +66,42 @@ public class MainView extends VerticalLayout {
 			
 			return icon;
 		}).setHeader("Status");
-		*/
+		
 		
 		grid.getColumns().forEach(col -> col.setAutoWidth(true));
 	}
 
-	private void loadStudents() {
-		List<Student> students = new ArrayList<>();
-//		students.add(new Student("Adam", 24, 1675, "UK", new Status("ACTIVE")));
-//		students.add(new Student("Kevin", 24, 1675, "UK", new Status("PASSIVE")));
-//		students.add(new Student("Emily", 24, 1675, "UK", new Status("ABSOLVED")));
-		grid.setItems(students);
+	private void loadStudents() {		
+		grid.setItems(studentService.findAll());
 	}
 
 	private void createFieldVariables() {
-		logoLayout = new LogoLayout();
-		grid = new Grid<>(Student.class);
+		this.logoLayout = new LogoLayout();
+		this.grid = new Grid<>(Student.class);
+		this.filterField = new TextField();
+	}
+	
+	private Component createToolbar() {
+		filterField.setPlaceholder("Filter by name...");
+		filterField.setClearButtonVisible(true);
+		filterField.setValueChangeMode(ValueChangeMode.LAZY);
+		filterField.addValueChangeListener(e -> updateStudents());
+		
+		Button addStudentButton = new Button("Add Student");
+		Button removeStudentButton = new Button("Remove Student");
+		
+		addStudentButton.addClickListener(e ->
+			// http://localhost:9090/add-student
+			getUI().ifPresent(ui -> ui.navigate("add-student")));
+		
+		removeStudentButton.addClickListener(e ->
+			// http://localhost:9090/add-student
+			getUI().ifPresent(ui -> ui.navigate("remove-student")));
+		
+		return new HorizontalLayout(filterField, addStudentButton, removeStudentButton);
+	}
+
+	private void updateStudents() {
+		grid.setItems(studentService.find(filterField.getValue()));
 	}
 }

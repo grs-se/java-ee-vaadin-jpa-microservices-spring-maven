@@ -16,16 +16,11 @@ public class Status {
 	@Column
 	private String name;
 	
+	public Status() {
+	}
+
 	public Status(String name) {
 		this.name = name;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {
