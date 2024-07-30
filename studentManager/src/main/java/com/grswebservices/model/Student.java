@@ -8,6 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -19,15 +24,24 @@ public class Student {
 	private Integer id;
 	
 	@Column
+	@NotEmpty(message = "Name cannot be null or empty")
 	private String name;
 	
 	@Column
+	@Min(value = 0, message = "Age cannot be smaller than 0")
+	@Max(value = 120, message = "Age cannot be bigger than 120")
+	@NotNull(message = "Age must be specified")
 	private int age;
 
 	@Column
+	@Min(value = 0, message = "Zip code cannot be smaller than 0")
+	@Max(value = 9999, message = "Zip code cannot be bigger than 9999")
+	@NotNull(message = "Zip code cannot be empty")
+	@Digits(integer = 4, fraction = 0, message = "Zip code is 4 digit integer")
 	private int zipCode;
 
 	@Column
+	@NotEmpty(message = "Country must be specified")
 	private String country;
 	
 	@ManyToOne
