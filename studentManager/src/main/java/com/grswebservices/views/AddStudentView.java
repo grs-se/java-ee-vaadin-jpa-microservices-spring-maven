@@ -2,6 +2,7 @@ package com.grswebservices.views;
 
 import java.util.List;
 
+import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Status;
 import com.grswebservices.model.Student;
 import com.grswebservices.services.StatusService;
@@ -90,7 +91,7 @@ public class AddStudentView extends VerticalLayout {
 			// student.setName(name.getValue());
 			studentService.save(student);
 			clearFields();
-			Notification notification = Notification.show("Student saved successfully...");
+			Notification notification = Notification.show(Constants.STUDENT_SAVED);
 			notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
 			notification.setPosition(Position.TOP_CENTER);
 		} catch (ValidationException e) {
@@ -112,14 +113,14 @@ public class AddStudentView extends VerticalLayout {
 	}
 
 	private void createVariables() {
-		age = new TextField("Age");
-		name = new TextField("Name");
-		country = new TextField("Country");
-		zipCode = new TextField("Zip Code");
-		status = new ComboBox<Status>("Status");
+		age = new TextField(Constants.AGE);
+		name = new TextField(Constants.NAME);
+		country = new TextField(Constants.COUNTRY);
+		zipCode = new TextField(Constants.ZIP_CODE);
+		status = new ComboBox<Status>(Constants.ZIP_CODE);
 		image = new LogoLayout();
-		save = new Button("Save");
-		close = new Button("Cancel");
+		save = new Button(Constants.SAVE);
+		close = new Button(Constants.CANCEL);
 	}
 	
 	private void createStatus() {

@@ -2,6 +2,7 @@ package com.grswebservices.views;
 
 import java.util.Set;
 
+import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Student;
 import com.grswebservices.services.StudentService;
 import com.vaadin.flow.component.Component;
@@ -63,7 +64,7 @@ public class RemoveStudentView extends VerticalLayout implements SelectionListen
 
 	private void removeSelectedItems() {
 		selected.forEach(studentService::remove);
-		Notification notification = Notification.show("Student(s) removed successfully...");
+		Notification notification = Notification.show(Constants.REMOVE_STUDENT);
 		notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
 		// remove the students from the grid (update the grid)
 		grid.setItems(studentService.findAll());
@@ -75,15 +76,15 @@ public class RemoveStudentView extends VerticalLayout implements SelectionListen
 
 	private void createFieldVariables() {
 		grid = new Grid<>(Student.class);
-		remove = new Button("Remove");
-		cancel = new Button("Cancel");
+		remove = new Button(Constants.REMOVE);
+		cancel = new Button(Constants.CANCEL);
 	}
 	
 	private void configureGrid() {
 		grid.setSizeFull();
 		grid.setColumns("country", "zipCode");
-		grid.addColumn(s -> s.getName()).setHeader("Name");
-		grid.addColumn(s -> s.getAge()).setHeader("Age");
+		grid.addColumn(s -> s.getName()).setHeader(Constants.NAME);
+		grid.addColumn(s -> s.getAge()).setHeader(Constants.AGE);
 		
 		grid.addComponentColumn(s -> {
 			// different colour icons for different status values
@@ -101,7 +102,7 @@ public class RemoveStudentView extends VerticalLayout implements SelectionListen
 			}
 			
 			return icon;
-		}).setHeader("Status");
+		}).setHeader(Constants.STATUS);
 		
 		
 		grid.getColumns().forEach(col -> col.setAutoWidth(true));

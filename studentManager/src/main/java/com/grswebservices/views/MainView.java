@@ -3,6 +3,7 @@ package com.grswebservices.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Status;
 import com.grswebservices.model.Student;
 import com.grswebservices.services.StudentService;
@@ -46,8 +47,8 @@ public class MainView extends VerticalLayout {
 	private void configureGrid() {
 		grid.setSizeFull();
 		grid.setColumns("country", "zipCode");
-		grid.addColumn(s -> s.getName()).setHeader("Name");
-		grid.addColumn(s -> s.getAge()).setHeader("Age");
+		grid.addColumn(s -> s.getName()).setHeader(Constants.NAME);
+		grid.addColumn(s -> s.getAge()).setHeader(Constants.AGE);
 		
 		grid.addComponentColumn(s -> {
 			// different colour icons for different status values
@@ -65,7 +66,7 @@ public class MainView extends VerticalLayout {
 			}
 			
 			return icon;
-		}).setHeader("Status");
+		}).setHeader(Constants.STATUS);
 		
 		
 		grid.getColumns().forEach(col -> col.setAutoWidth(true));
@@ -82,13 +83,13 @@ public class MainView extends VerticalLayout {
 	}
 	
 	private Component createToolbar() {
-		filterField.setPlaceholder("Filter by name...");
+		filterField.setPlaceholder(Constants.FILTER_NAME);
 		filterField.setClearButtonVisible(true);
 		filterField.setValueChangeMode(ValueChangeMode.LAZY);
 		filterField.addValueChangeListener(e -> updateStudents());
 		
-		Button addStudentButton = new Button("Add Student");
-		Button removeStudentButton = new Button("Remove Student");
+		Button addStudentButton = new Button(Constants.ADD_STUDENT);
+		Button removeStudentButton = new Button(Constants.REMOVE_STUDENT);
 		
 		addStudentButton.addClickListener(e ->
 			// http://localhost:9090/add-student
