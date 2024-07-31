@@ -9,6 +9,7 @@ import javax.annotation.security.PermitAll;
 import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Status;
 import com.grswebservices.model.Student;
+import com.grswebservices.services.SecurityService;
 import com.grswebservices.services.StudentService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -31,14 +32,16 @@ public class MainView extends VerticalLayout {
 	
 	// constructor injection
 	private final StudentService studentService;
+	private final SecurityService securityService;
 	private LogoLayout logoLayout;
 	private Grid<Student> grid;
 	private TextField filterField;
 	private Checkbox themeToggle;
 	private static boolean isChecked;
 	
-	public MainView(StudentService studentService) {
+	public MainView(StudentService studentService, SecurityService securityService) {
 		this.studentService = studentService;
+		this.securityService = securityService;
 		setSizeFull();
 		setAlignItems(Alignment.CENTER);
 		
@@ -114,6 +117,7 @@ public class MainView extends VerticalLayout {
 		
 		Button addStudentButton = new Button(Constants.ADD_STUDENT);
 		Button removeStudentButton = new Button(Constants.REMOVE_STUDENT);
+		Button logout = new Button("Logout");
 		
 		addStudentButton.addClickListener(e ->
 			// http://localhost:9090/add-student
@@ -123,7 +127,9 @@ public class MainView extends VerticalLayout {
 			// http://localhost:9090/add-student
 			getUI().ifPresent(ui -> ui.navigate("remove-student")));
 		
-		return new HorizontalLayout(filterField, addStudentButton, removeStudentButton, createToggle());
+		logout.addClickListener(e -> securityService.logout());
+		
+		return new HorizontalLayout(filterField, addStudentButton, removeStudentButton, logout, createToggle());
 	}
 
 	private void updateStudents() {
