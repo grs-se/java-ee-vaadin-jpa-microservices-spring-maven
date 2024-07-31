@@ -2,6 +2,8 @@ package com.grswebservices.views;
 
 import java.util.Set;
 
+import javax.annotation.security.PermitAll;
+
 import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Student;
 import com.grswebservices.services.StudentService;
@@ -23,6 +25,7 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Remove Student")
 @Route(value = "remove-student")
+@PermitAll
 public class RemoveStudentView extends VerticalLayout implements SelectionListener<Grid<Student>, Student> {
 	
 	private Grid<Student> grid;

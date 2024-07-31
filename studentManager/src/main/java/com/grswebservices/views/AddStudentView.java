@@ -2,6 +2,8 @@ package com.grswebservices.views;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+
 import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Status;
 import com.grswebservices.model.Student;
@@ -26,8 +28,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @PageTitle("Add Students")
-// http://localhost:9090/add-student
-@Route(value = "add-student")
+@Route(value = "add-student") // http://localhost:9090/add-student
+@PermitAll
 public class AddStudentView extends VerticalLayout {
 	
 	private final StatusService statusService;

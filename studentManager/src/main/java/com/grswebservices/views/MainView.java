@@ -4,6 +4,8 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+
 import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Status;
 import com.grswebservices.model.Student;
@@ -24,7 +26,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 @PageTitle(value = "Home")
 @Route(value = "/ui")
-// http://localhost:8080/ui
+@PermitAll
 public class MainView extends VerticalLayout {
 	
 	// constructor injection
