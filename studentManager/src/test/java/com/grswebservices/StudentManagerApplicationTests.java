@@ -1,4 +1,4 @@
-package com.renaissance.webservices.student_manager;
+package com.grswebservices;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
