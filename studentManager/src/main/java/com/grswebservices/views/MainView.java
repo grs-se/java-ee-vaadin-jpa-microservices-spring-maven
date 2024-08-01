@@ -95,18 +95,7 @@ public class MainView extends VerticalLayout {
 			return icon;
 		}).setHeader(Constants.STATUS);
 		
-		
 		grid.getColumns().forEach(col -> col.setAutoWidth(true));
-	}
-
-	private void loadStudents() {		
-		grid.setItems(studentService.findAll());
-	}
-
-	private void createFieldVariables() {
-		this.logoLayout = new LogoLayout();
-		this.grid = new Grid<>(Student.class);
-		this.filterField = new TextField();
 	}
 	
 	private Component createToolbar() {
@@ -134,5 +123,15 @@ public class MainView extends VerticalLayout {
 
 	private void updateStudents() {
 		grid.setItems(studentService.find(filterField.getValue()));
+	}
+	
+	private void loadStudents() {		
+		grid.setItems(studentService.findAll());
+	}
+
+	private void createFieldVariables() {
+		this.logoLayout = new LogoLayout();
+		this.grid = new Grid<>(Student.class);
+		this.filterField = new TextField();
 	}
 }

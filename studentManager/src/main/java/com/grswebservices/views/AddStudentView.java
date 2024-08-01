@@ -119,7 +119,7 @@ public class AddStudentView extends VerticalLayout {
 		name = new TextField(Constants.NAME);
 		country = new TextField(Constants.COUNTRY);
 		zipCode = new TextField(Constants.ZIP_CODE);
-		status = new ComboBox<Status>(Constants.ZIP_CODE);
+		status = new ComboBox<Status>(Constants.STATUS);
 		image = new LogoLayout();
 		save = new Button(Constants.SAVE);
 		close = new Button(Constants.CANCEL);
