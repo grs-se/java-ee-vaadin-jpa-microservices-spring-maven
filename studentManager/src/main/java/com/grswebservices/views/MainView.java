@@ -124,7 +124,7 @@ public class MainView extends VerticalLayout {
 			getUI().ifPresent(ui -> ui.navigate("add-student")));
 		
 		removeStudentButton.addClickListener(e ->
-			// http://localhost:9090/add-student
+			// http://localhost:9090/remove-student
 			getUI().ifPresent(ui -> ui.navigate("remove-student")));
 		
 		logout.addClickListener(e -> securityService.logout());
