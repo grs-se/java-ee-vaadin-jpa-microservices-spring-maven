@@ -3,6 +3,7 @@ package com.grswebservices.views;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 
 import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Status;
@@ -29,7 +30,7 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Add Students")
 @Route(value = "add-student") // http://localhost:9090/add-student
-@PermitAll
+@RolesAllowed({"ROLE_ADMIN", "ROLE_USER"})
 public class AddStudentView extends VerticalLayout {
 	
 	private final StatusService statusService;

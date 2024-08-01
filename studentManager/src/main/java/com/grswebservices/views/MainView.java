@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 
 import com.grswebservices.constants.Constants;
 import com.grswebservices.model.Status;
@@ -27,7 +28,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 @PageTitle(value = "Home")
 @Route(value = "/ui")
-@PermitAll
+@RolesAllowed({"ROLE_ADMIN", "ROLE_USER"})
 public class MainView extends VerticalLayout {
 	
 	// constructor injection

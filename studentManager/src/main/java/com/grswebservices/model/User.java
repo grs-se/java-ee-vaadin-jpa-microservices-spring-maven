@@ -1,10 +1,13 @@
 package com.grswebservices.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,10 +27,13 @@ public class User implements UserDetails {
 	
 	@Column
 	private String password;
+	
+	@Column
+	@Enumerated(EnumType.STRING)
+	private Role role = Role.ROLE_USER; // all users have a role of 'user' by default
 
-	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return new ArrayList<GrantedAuthority>();
+		return Arrays.asList(role);
 	}
 
 	@Override
@@ -67,5 +73,13 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 
+	}
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 }
